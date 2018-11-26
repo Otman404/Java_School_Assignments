@@ -3,6 +3,7 @@ public class Age {
 	private int age;
 
 	public Age(){
+		this.age = 0;
 	}
 	public Age(int age){
 		this.age = age;

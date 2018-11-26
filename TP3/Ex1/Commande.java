@@ -1,55 +1,70 @@
 import java.util.*;
-public class Commande{
+import java.text.*;
+class Commande{
 
-	private int currentID;
-	private Medicament[] med;
-	private Date dateCommand;
 	private static int id = 0;
+	private int currentId ;
+	private Medicament[] m ;
+	private Date dateCommande;
+
 	public Commande(){
-		this.currentID = ++id;
+		this.currentId = ++id;
+		this.m = new Medicament[1];
+		this.dateCommande = new Date();
+	}
+	public Commande(Medicament[] m , Date dateCommande ){
+		this.currentId = ++id;
+		this.m = new Medicament[m.length];
+		for (int i = 0; i<m.length ;i++ ) {
+			this.m[i] = new Medicament(m[i]);
+		}
+		this.dateCommande = dateCommande;
+	}
+	public Commande(Commande c){
+		this.currentId = ++id;
+		setDateCommande(c.getDateCommande());
+		setMedicament(c.getMedicament());
 	}
 
-	public Commande(Medicament[] med , Date dateCommand){
-		this.med = med;
-		this.dateCommand = dateCommand;
+	public int getID(){ return this.currentId; }
+
+	public Medicament[] getMedicament(){
+		return this.m;
 	}
-
-	public Medicament[] getMedicament(){return this.med;}
-	public void setMedicament(Medicament[] med){
-		this.med = med;
+	public void setMedicament(Medicament[] m){
+		this.m = new Medicament[m.length];
+		for (int i = 0; i<m.length ;i++ ) {
+			this.m[i] = new Medicament(m[i]);
+		}
 	}
+	public Date getDateCommande(){ return this.dateCommande; }
+	public void setDateCommande(Date dateCommande){ this.dateCommande = dateCommande; }
 
-	public Date getDateCommand(){return this.dateCommand;}
-	public void setDateCommand(Date d){this.dateCommand = d;}
-
+	public void afficherCommande(){
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		System.out.println("Commande : "+this.currentId+" Date de la commande : "+sdf.format(this.dateCommande));
+		for (Medicament mm : this.m) {
+			System.out.println(mm);
+		}
+	}
 	public double getTotalHT(){
-		double TotalHT = 0;
-		for(int i = 0 ; i<this.med.length ; i++){
-			TotalHT += this.med[i].getPrixUnitaire();
+		double totalHT = 0;
+		for(Medicament mm : this.m ){
+			totalHT += mm.getPrixUnitaire();
 		}
-		return TotalHT;
+		return totalHT;
 	}
-
 	public double getTotalTTC(){
-		double ttc;
-		ttc = this.getTotalHT() + this.getTotalHT()*0.2;
-		return ttc;
+		return (this.getTotalHT() + this.getTotalHT()*0.2);
 	}
-
 	public double getRemise(double remise){
-		double rms = this.getTotalTTC() - this.getTotalTTC()*(remise/100);
-		return rms;
+		return (this.getTotalTTC() - this.getTotalTTC()*(remise/100));
+	}
+	public void afficherFacture(double remise){
+		this.afficherCommande();
+		System.out.println("Prix Total : "+this.getTotalTTC()+" Dhs");
+		if(remise != 0)
+			System.out.println("Prix total apres remise est : "+this.getRemise(remise)+" Dhs");
 	}
 
-	public void afficherFacture(int rem){
-		System.out.println("\nid      Libelle         DateExperation  prixUnitaire\n");
-		for(int i = 0 ; i<this.med.length ; i++){
-			System.out.println(this.med[i]);
-		}
-		System.out.println("\nPrix total de la commande : "+this.getTotalTTC()+"\n");
-		if(rem != 0)
-		System.out.format("Prix apres la remise : %.2f\n\n",this.getRemise(rem));
-	}
-
-}
-
+}	

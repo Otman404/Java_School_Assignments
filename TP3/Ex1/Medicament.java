@@ -1,43 +1,51 @@
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
+import java.text.*;
+class Medicament{
 
-public class Medicament{
-
+	private static int id = 0;
+	private  int currentId;
 	private String libelle;
-	private Date dateExpiration;
+	private Date dateExp;
 	private double prixUnitaire;
-	private int currentID;
-	private static int id;
 
 	public Medicament(){
-		this.currentID = ++id;
+		this.currentId = ++id;
+		this.libelle = new String();
+		this.dateExp = new Date();
+		this.prixUnitaire = 0;
 	}
-	public Medicament(String libelle , Date dateExpiration , double prixUnitaire){
-		this.libelle = libelle;
-		this.dateExpiration = dateExpiration;
+	public Medicament(String libelle , Date dateExp , double prixUnitaire){
+		this.currentId = ++id;
+		this.libelle = new String(libelle);
+		this.dateExp = dateExp;
 		this.prixUnitaire = prixUnitaire;
-		this.currentID = ++id;
+	}
+	public Medicament(Medicament m){
+		setLibelle(m.getLibelle());
+		setDateExp(m.getDateExp());
+		setPrixUnitaire(m.getPrixUnitaire());
+		this.currentId = ++id;
 	}
 
-	public String getLibelle(){return this.libelle;}
-	public void setLibelle(String libelle){ this.libelle = libelle;}
+	public int getID(){ return this.currentId; }
 
-	public Date getDateExpiration(){return this.dateExpiration;}
-	public void setDateExpiration(Date dateExpiration){this.dateExpiration = dateExpiration;}
+	public String getLibelle(){ return this.libelle; }
+	public void setLibelle(String libelle){ this.libelle = new String(libelle); }
 
-	public double getPrixUnitaire(){return this.prixUnitaire;}
-	public void setPrixUnitaire(double prixUnitaire){this.prixUnitaire = prixUnitaire;}
+	public Date getDateExp(){ return this.dateExp; }
+	public void setDateExp(Date dateExp){ this.dateExp = dateExp; }
+
+	public double getPrixUnitaire(){ return this.prixUnitaire; }
+	public void setPrixUnitaire(double prixUnitaire){ this.prixUnitaire = prixUnitaire; }
 
 	public boolean isExpired(){
-		Date d = new Date();
-		if(d.before(this.dateExpiration))
-			return false;
-		return true;
+		if(this.dateExp.before(new Date()))
+			return true;
+		return false;
 	}
 
 	public String toString(){
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		return this.currentID+"\t"+this.libelle+"\t"+sdf.format(this.dateExpiration)+"\t"+this.prixUnitaire;
+		return this.currentId+", Libelle : "+this.libelle+", Date d expiration : "+sdf.format(this.dateExp)+", Prix Unitaire : "+this.prixUnitaire+" Dhs";
 	}
-
 }

@@ -3,7 +3,10 @@ public class Rectangle{
 	private double largeur;
 	private double longueur;
 
-	public Rectangle(){}
+	public Rectangle(){
+		this.largeur = 0;
+		this.longueur = 0;
+	}
 	public Rectangle(double largeur , double longueur){
 		this.largeur = largeur;
 		this.longueur = longueur;

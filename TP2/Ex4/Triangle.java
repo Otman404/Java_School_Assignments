@@ -5,6 +5,9 @@ public class Triangle{
 	private Point c;
 
 	public Triangle(){
+		this.a = new Point();
+		this.b = new Point();
+		this.c = new Point();
 	}	
 
 	public Triangle(Point a,Point b , Point c){

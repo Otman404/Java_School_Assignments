@@ -3,7 +3,10 @@ public class Cercle{
 private Point centre;
 private double rayon; 
 
-public Cercle(){}
+public Cercle(){
+	this.centre = new Point();
+	this.rayon = 0;
+}
 public Cercle(Point centre,Point p){
 	this.centre = centre;
 	this.rayon = Math.sqrt(Math.pow((centre.getX() - p.getX()),2) + Math.pow((centre.getY() - p.getY()),2));

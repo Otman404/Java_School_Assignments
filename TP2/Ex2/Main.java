@@ -6,7 +6,7 @@ public class Main{
 		Point point = new Point(100,100);
 		Cercle c = new Cercle(centre,point);
 		Cercle c2 = new Cercle(centre2,20);
-		System.out.println("Perimetre du 1er cercle :" + c.getPerimetre() + "Rayon : "+c.getR());
+		System.out.println("Perimetre du 1er cercle : " + c.getPerimetre() + " Rayon : "+c.getR());
 		System.out.println(c);
 
 		Point p2 = new Point(20,40);

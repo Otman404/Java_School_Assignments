@@ -8,13 +8,13 @@ abstract class Employe{
 	protected String prenom;
 	protected int age;
 	protected Date date_recrutement;
-	public static int id;
+	public static int id = 0;
 
 	public Employe(String nom , String prenom , int age , Date date_recrutement){
 		this.nom = new String(nom);
 		this.prenom = new String(prenom);
 		this.age = age;
-		this.date_recrutement =date_recrutement;
+		this.date_recrutement = date_recrutement;
 		this.currentId = ++id; 
 	}
 
@@ -22,7 +22,7 @@ abstract class Employe{
 		this.nom = new String();
 		this.prenom = new String();
 		this.age = 0;
-		this.date_recrutement =new Date();
+		this.date_recrutement = new Date();
 		this.currentId = ++id;
 	}
 
@@ -34,14 +34,14 @@ abstract class Employe{
 		return this.nom;
 	}
 	public void setNom(String nom){
-		this.nom = nom;
+		this.nom = new String(nom);
 	}
 
 	public String getPrenom(){
 		return this.prenom;
 	}
 	public void setPrenom(String prenom){
-		this.prenom = prenom;
+		this.prenom = new String(prenom);
 	}
 	public int getAge(){
 		return this.age;

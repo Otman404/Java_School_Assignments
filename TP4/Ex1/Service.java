@@ -5,7 +5,7 @@ class Service{
 	private int currentId;
 	private String intitule; 
 	private double chiffreAffaire;
-	public static int id;
+	public static int id = 0;
 
 	public Service(){
 		this.intitule = new String();
@@ -13,9 +13,15 @@ class Service{
 		this.currentId = ++id;
 	}
 	public Service(String intitule , double chiffreAffaire){
-		this.intitule = intitule;
+		this.intitule = new String(intitule);
 		this.chiffreAffaire = chiffreAffaire;
 		this.currentId = ++id;
+	}
+
+	public Service(Service s){
+		this.currentId = ++id;
+		setIntitule(s.getIntitule());
+		setChiffreAffaire(s.getChiffreAffaire());
 	}
 
 	public int getId(){
@@ -25,7 +31,7 @@ class Service{
 		return this.intitule;
 	}
 	public void setIntitule(String intitule){
-		this.intitule = intitule;
+		this.intitule = new String(intitule);
 	}
 	public double getChiffreAffaire(){
 		return this.chiffreAffaire;

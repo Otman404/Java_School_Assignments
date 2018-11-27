@@ -12,7 +12,7 @@ class Ingenieur extends Employe{
 		this.primesMens = 0;
 	}
 	public Ingenieur(String nom , String prenom , int age , Date date_recrutement,char grade,int heuresDeTravail,double primesMens){
-		super(nom ,prenom , age ,  date_recrutement);
+		super(nom ,prenom , age , date_recrutement);
 		this.grade = grade;
 		this.heuresDeTravail = heuresDeTravail;
 		this.primesMens = primesMens;

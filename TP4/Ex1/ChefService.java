@@ -11,7 +11,7 @@ class ChefService extends Employe{
 
 	public ChefService(String nom , String prenom , int age , Date date_recrutement,Service s){
 		super(nom ,prenom , age ,  date_recrutement);
-		this.s = s;
+		this.s = new Service(s);
 	}
 
 	public double calculSalaire(){

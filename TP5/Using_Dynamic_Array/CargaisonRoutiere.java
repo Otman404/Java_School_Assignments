@@ -2,7 +2,7 @@ class CargaisonRoutiere extends Cargaison{
 
 	public CargaisonRoutiere(){
 		super();
-		n = 0; //Ce n nous aide a evitez d'avoir une case vite dans notre tableau de marchandise , voir Cargaison.java Ligne 32++
+		n = 0; //Ce n nous aide a evitez d'avoir une case vide dans notre tableau de marchandise , voir Cargaison.java Ligne 32++
 	}
 
 	public CargaisonRoutiere(double distance , Marchandise[] m){
